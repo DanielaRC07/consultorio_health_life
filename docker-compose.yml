@@ -6,9 +6,9 @@ services:
     container_name: db_consultorio
     environment:
       MYSQL_ROOT_PASSWORD: secret
-      MYSQL_DATABASE: login_consultorio
-      MYSQL_USER: daniel
-      MYSQL_PASSWORD: 36758402
+      MYSQL_DATABASE: consultorio
+      MYSQL_USER: root
+      MYSQL_PASSWORD: secret
     ports:
       - "3306:3306"
     volumes:
