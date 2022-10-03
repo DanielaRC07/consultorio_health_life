@@ -10,7 +10,7 @@ COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE citas (
 	id INT auto_increment NOT NULL,
-	numero_identificacion varchar(100) NOT NULL,
+	numero_identificacion varchar(30) NOT NULL,
 	hora_fecha DATETIME NOT NULL,
 	CONSTRAINT citas_PK PRIMARY KEY (id),
 	CONSTRAINT citas_FK FOREIGN KEY (numero_identificacion) REFERENCES paciente(numero_identificacion)
