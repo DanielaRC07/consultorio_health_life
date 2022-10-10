@@ -20,7 +20,7 @@ body {
 }
 h1{
     text-align: center;
-    color: #1a2537;
+    color: #0D3878;
     font-size: 40px;
 }
 input[type="text"],
@@ -45,7 +45,7 @@ button {
     width: 100%;
     color: white;
     font-size: 20px;
-    background: #1a2537;
+    background: #0D3878;
     padding: 15px 20px;
     border-radius: 5px;
     cursor: pointer;
