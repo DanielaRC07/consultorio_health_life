@@ -16,14 +16,6 @@ app.use('/resources', express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
 //encriptar contraseñas modulo
 //const bcryptjs =  require('bcryptjs');
-//varibles de session
-//const session = require('express-session');
-//app.use(session({
-    //secret: 'secret',
-    //resave: true,
-    //saveUninitialized: true
-//}));
-
 //invocamos la conexxion de la DB
 const connection = require('./database/db');
 const conexion_2 = {

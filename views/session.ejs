@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="resources/css/session.css">
+    <title>Bienvenido</title>
+  </head>
+  <body class="text-center">
+          <div class="contenedor">
+            <% if (login) {%>
+              <h1>¡Bienvenido!</h1>
+              <h1>Usuario conectado: <strong><%= email %></strong></h1>
+
+              <form id="formulario" action="cita" method="POST">
+                <div>
+                    <input type="date" id="fecha" name="fecha" min="2022-10-01" max="2022-10-31" >
+                    <label for="appt-time">
+                        Elija una hora entre 12:00 pm a 18:00 pm
+                    </label>
+                    <input id="hora" type="time" name="hora" min="12:00" max="18:00" required />
+                    <span class="validity"></span>
+                </div>
+                <div>
+                    <button type="submit" title="Registrar" name="Registrar">Registrar</button>
+                </div>
+            </form>
+            <a href="logout" class="a-logout">Logout</a>
+
+            <% } else {%>
+              <h1>Inicie sesion</h1>
+              <h1><strong><%= name %></strong></h1>
+                <a href="login" class="a-login">Ir a Login</a>
+            <% } %>
+          </div>
+  </body>
+</html>
