@@ -82,7 +82,7 @@ router.post('/auth', (req, res) => {
                 });
             } else {
                 req.session.loggedin = true;
-                req.session.Identificacion = result[0].Identificacion;
+                req.session.nombre = result[0].nombre;
                 console.log(result[0].name)
                 res.render('login',{
                     alert: true,
@@ -105,7 +105,7 @@ router.get('/session', (req, res) => {
     if (req.session.loggedin) {
         res.render('session', {
             login: true,
-            email: req.session.Identificacion
+            nombre: req.session.nombre
         });
     } else {
         res.render('session', {
@@ -167,7 +167,7 @@ router.post('/show', urlcodeParser, function (req, res) {
     req.getConnection((err, conn) => {
         if (err) return res.send(err)
         const x = ""
-        const consulta = x.concat('select * from pacientes where Identificacion="', Identificacion, '"and email="', email, '"')
+        const consulta = x.concat('select * from pacientes where id="', Identificacion, '"and email="', email, '"')
         console.log(consulta)
         conn.query(consulta, [req.body], (err, result, rows) => {
             if (err) {
