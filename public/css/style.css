@@ -4,6 +4,9 @@ a{
 #contenedor-inicial{
     background-color: #0D3878;
 }
+.logo{
+    height: 150px;
+}
 #typewriter{
     font-family: 'Abel', sans-serif;
 }
@@ -21,6 +24,10 @@ a{
 }
 #ubicacion{
     font-size: 25px;
+}
+.iframe{
+    max-width: 100%;
+    height: auto;
 }
 
 footer{

@@ -69,7 +69,8 @@ router.post('/auth', (req, res) => {
     const identificacion = req.body.password;
     if (email && identificacion) {
         connection.query('SELECT * FROM pacientes WHERE email = ?', [email], async (error, result) => {
-            if (result.length == 0 || identificacion != result[0].Identificacion) {
+            if (result.length == 0 || identificacion != result[0].id) {
+                console.log("Esta es la de la base de datos" + result[0].id + "Esta es la de ingreso" + identificacion);
                 res.render('login', {
                     alert: true,
                     alertTitle: "Error",
@@ -77,7 +78,7 @@ router.post('/auth', (req, res) => {
                     alertIcon: "error",
                     showConfirmButton: true,
                     timer: false,
-                    ruta: 'login'
+                    ruta: ''
                 });
             } else {
                 req.session.loggedin = true;
@@ -114,12 +115,6 @@ router.get('/session', (req, res) => {
     }
     res.end();
 });
-router.get('/logout', function (req, res) {
-    req.session.destroy(() => {
-        res.redirect('/') // siempre se ejecutará después de que se destruya la sesión
-    })
-});
-//Destruye la sesión.
 router.get('/logout', function (req, res) {
     req.session.destroy(() => {
         res.redirect('/') // siempre se ejecutará después de que se destruya la sesión
