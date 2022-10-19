@@ -69,7 +69,8 @@ router.post('/auth', (req, res) => {
     const identificacion = req.body.password;
     if (email && identificacion) {
         connection.query('SELECT * FROM pacientes WHERE email = ?', [email], async (error, result) => {
-            if (result.length == 0 || identificacion != result[0].Identificacion) {
+            if (result.length == 0 || identificacion != result[0].id) {
+                console.log("Esta es la de la base de datos" + result[0].id + "Esta es la de ingreso" + identificacion);
                 res.render('login', {
                     alert: true,
                     alertTitle: "Error",
@@ -77,11 +78,11 @@ router.post('/auth', (req, res) => {
                     alertIcon: "error",
                     showConfirmButton: true,
                     timer: false,
-                    ruta: 'login'
+                    ruta: ''
                 });
             } else {
                 req.session.loggedin = true;
-                req.session.Identificacion = result[0].Identificacion;
+                req.session.nombre = result[0].nombre;
                 console.log(result[0].name)
                 res.render('login',{
                     alert: true,
@@ -104,7 +105,7 @@ router.get('/session', (req, res) => {
     if (req.session.loggedin) {
         res.render('session', {
             login: true,
-            email: req.session.Identificacion
+            nombre: req.session.nombre
         });
     } else {
         res.render('session', {
@@ -114,12 +115,6 @@ router.get('/session', (req, res) => {
     }
     res.end();
 });
-router.get('/logout', function (req, res) {
-    req.session.destroy(() => {
-        res.redirect('/') // siempre se ejecutará después de que se destruya la sesión
-    })
-});
-//Destruye la sesión.
 router.get('/logout', function (req, res) {
     req.session.destroy(() => {
         res.redirect('/') // siempre se ejecutará después de que se destruya la sesión
@@ -172,7 +167,7 @@ router.post('/show', urlcodeParser, function (req, res) {
     req.getConnection((err, conn) => {
         if (err) return res.send(err)
         const x = ""
-        const consulta = x.concat('select * from pacientes where Identificacion="', Identificacion, '"and email="', email, '"')
+        const consulta = x.concat('select * from pacientes where id="', Identificacion, '"and email="', email, '"')
         console.log(consulta)
         conn.query(consulta, [req.body], (err, result, rows) => {
             if (err) {

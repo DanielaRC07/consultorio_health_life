@@ -22,10 +22,10 @@
     <header class="container-fluid d-flex justify-content-center" id="contenedor-inicial">
         <p class="text-light mb-0 p-2 fs-6" id="typewriter"></p>
     </header>
-    <nav class="navbar navbar-expand-lg bg-light p-3" id="menu">
+    <nav class="navbar navbar-expand-lg bg-light " id="menu">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <span class="text-primary fs-4 fw-bold">Healt Life</span>
+                <span class="text-primary fs-4 fw-bold"><img src="/resources/css/img/logo.png" class="logo" alt=""></span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -38,7 +38,7 @@
                         <a class="nav-link active" aria-current="page" href="/">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="#Bienvenida">Agendar Cita</a>
+                        <a class="nav-link " href="/registro">Agendar Cita</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="#contenedor-formulario">Contacto</a>
@@ -89,15 +89,37 @@
                 </div>
             </a>
         </div>
+
+        <div class="container-lg-12 " style=" background-color:  #DDE3F3;padding-top: 50px; padding-bottom: 50px;">
+
+            <div class="container" id="Login">
+                <a href="/login">
+                    <div class="">
+                        <div class="card">
+                            <div class="card-body text-center ">
+                                <i class="fas fa-user" border-radius="25px"
+                                    style='font-size:75px; color:#003785; padding:  5px'></i>
+                                <i class=" " style='font-size:75px; color:#003785; padding:5px'></i>
+                                <h3>¡Si ya tines una cuenta inicia sesion!</h3>
+                                <p>Email y Numero de Identificacion</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
         <div class="text-center pt-5">
             <p class="text-center" id="ubicacion">Nuestra Ubicacion</p>
-            <iframe
+            <div class="iframe">
+                <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15906.552713194533!2d-74.11382835735317!3d4.658442546598729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9bfd2da6cb29%3A0x239d635520a33914!2zQm9nb3TDoQ!5e0!3m2!1ses!2sco!4v1665109111029!5m2!1ses!2sco"
                 width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
         </div>
     </div>
-
     <footer class="w-100 d-flex align-items justify-content-center flex-wrap">
         <div id="iconos">
             <p class="fs-5 px-3 pt-3">Hecho por:</p>
