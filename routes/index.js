@@ -23,14 +23,12 @@ router.get('/', (req, res) => {
 router.get('/login', (req, res) => {
     res.render('login');
 });
-
+router.get('/cita',(req,res)=>{
+    res.render('cita')
+})
 router.get('/registro', (req, res) => {
     res.render('registro');
 });
-router.get('/cita', (req, res) => {
-    res.render('cita');
-});
-
 //Registro POST
 router.post('/registro', (req, res, next) => {
     //capturamos los tres campos
@@ -83,8 +81,9 @@ router.post('/auth', (req, res) => {
             } else {
                 req.session.loggedin = true;
                 req.session.nombre = result[0].nombre;
+                req.session.id = result[0].id;
                 console.log(result[0].name)
-                res.render('login',{
+                res.render('login', {
                     alert: true,
                     alertTitle: "Conexión Exitosa",
                     alertMessage: "Login Correcto",
@@ -122,25 +121,36 @@ router.get('/logout', function (req, res) {
 });
 
 //registro cita
-router.post('/cita', (req, res, next) => {
-    //capturamos los tres campos
+router.post('/session', urlcodeParser, (req, res, next) => {
     const fecha = req.body.fecha;
     const hora = req.body.hora;
-    //encriptamos la contraseña
-    //let passwordencry = await bcryptjs.hash(pass,8); por si algo jaja y necesitamos
-    connection.query("INSERT INTO citas SET ?", { fecha: fecha, hora: hora }, async (error, results) => {
+    const identificacion = req.body.password;
+    //predifinido
+    const idmedico = 11111111;
+
+    connection.query("INSERT INTO citas SET ?", { numero_identificacion: identificacion, hora: hora, fecha: fecha, id_medico: idmedico, id_paciente: "111" }, async (error, results) => {
         if (error) {
             console.log(error);
         } else {
-            res.render('registro', {
-                alert: true,
-                alertTitle: "Registro",
-                alertMessage: "Registro Exitoso",
-                alertIcon: 'success',
-                showConfirmButton: false,
-                timer: 1500,
-                rute: ''
-            });
+            console.log("Ser registro Correctamente")
+            const x = ""
+            // SELECT * FROM citas WHERE numero_identificacion = ${identificacion}`
+            const consulta = `SELECT * FROM citas ORDER BY id DESC LIMIT 1 `
+            connection.query(consulta, [req.body], (err, result, rows) => {
+                if (err) {
+                    { res.send(err) }
+                } else {
+                    //res.status(200).send({ result })
+                    console.log(result)
+                    res.render('cita',{
+                        idcita : result[0].id,
+                        numIden : result[0].numero_identificacion,
+                        hora : result[0].hora,
+                        fecha : result[0].fecha,
+                    })
+                }
+            })
+
         }
     });
 });
@@ -149,7 +159,7 @@ router.post('/mostrar', urlcodeParser, function (req, res) {
     req.getConnection((err, conn) => {
         if (err) return res.send(err)
         const x = ""
-        const consulta = "select * from pacientes"
+        const consulta = `SELECT * FROM pacientes WHERE id = ${identificacion}`
         conn.query(consulta, [req.body], (err, result, rows) => {
             if (err) {
                 { res.send(err) }
