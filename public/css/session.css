@@ -1,3 +1,37 @@
+.container {
+	width: 94%;
+	margin: 0 auto;
+    font-family: 'Abel', sans-serif;
+}
+
+
+.seccion-agendamiento .contenedor-Principal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+	justify-content: space-between;
+    border: 1px solid black;
+}
+.formulario .container{
+    display: flex;
+    border: 1px solid rgb(65, 15, 15);
+}
+
+.elemento{
+    
+    align-items: center;
+    margin-right: 50px;
+    margin-left: 50px;
+}
+.imgcitas{
+    width: 50%;
+    margin: 0;
+}
+.logocitas{
+    width: 100%;
+}
+#password{
+}
 div {
     margin-bottom: 10px;
     position: relative;
@@ -21,4 +55,8 @@ input:valid+span::after {
     position: absolute;
     content: "✓";
     padding-left: 5px;
+}
+.boton{
+    padding: 10px;
+    font-family: 'Abel', sans-serif;
 }

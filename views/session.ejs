@@ -5,30 +5,51 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="resources/css/session.css">
+    <!--Font-->
+    <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="resources/css/style.css">
     <title>Bienvenido</title>
   </head>
-  <body class="text-center">
+  <body>
           <div class="contenedor">
             <% if (login) {%>
-              <h1>¡Bienvenido!</h1>
-              <h1>Usuario conectado: <strong><%= nombre %></strong></h1>
+              <section class="seccion-agendamiento">
+                <div class="contenedor-Principal">
+                  <h1>¡Bienvenido!</h1>
+                  <p>¡Puede registrar su cita ahora mismo!</p>
 
-              <form id="formulario" action="session" method="POST">
-                <div>
-                    <label for="password" class="style">Identificación</label>
-                    <input id="password" type="password" placeholder="Contraseña" name="password" required>
-                    <input type="date" id="fecha" name="fecha" min="2022-10-01" max="2022-10-31" >
-                    <label for="appt-time">
+                  <h1>Usuario conectado: <strong><%= nombre %></strong></h1>
+              <div class="formulario">
+                <div class="container">
+                  <div class="imgcitas">
+                    <img class="logocitas" src="/resources/css/img/citas.jpg" alt="" srcset="">
+                  </div>
+                  <form id="formulario" action="session" method="POST">
+                    <p class="elemento">Ingrese los siguientes datos</p>
+                    <div class="elemento">
+                      <label for="password" class="labelId">Ingrese su Numero de Identificacion</label>
+                      <input id="password" type="password" placeholder="Contraseña" name="password" required>
+                    </div>
+                    <div class="elemento">
+                      <input type="date" id="fecha" name="fecha" min="2022-10-01" max="2022-10-31" >
+                    </div>
+                    <div class="elemento">
+                      <label for="appt-time">
                         Elija una hora entre 12:00 pm a 18:00 pm
-                    </label>
-                    <input id="hora" type="time" name="hora" min="12:00" max="18:00" required />
-                    <span class="validity"></span>
+                      </label>
+                      <input id="hora" type="time" name="hora" min="12:00" max="18:00" required />
+                      <span class="validity"></span>
+                    </div>
+                    <div class="elemento">
+                        <button class="boton" type="submit" title="Registrar" name="Registrar">Registrar</button>
+                    </div>
+                  
+              </form>
                 </div>
-                <div>
-                    <button type="submit" title="Registrar" name="Registrar">Registrar</button>
+              </div>
+            <a href="logout" class="a-logout">Logout</a> 
                 </div>
-            </form>
-            <a href="logout" class="a-logout">Logout</a>
+              </section>
                       <!--Mensaje de Regstro extoso-->
             <% } else {%>
               <h1>Inicie sesion</h1>

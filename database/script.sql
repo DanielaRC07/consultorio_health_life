@@ -20,8 +20,8 @@ COLLATE=utf8mb4_general_ci;
 CREATE TABLE citas (
 	id INT auto_increment NOT NULL,
 	numero_identificacion varchar(30) NOT NULL,
-	hora TIME (6) NOT NULL,
-	fecha DATE NOT NULL,
+	hora varchar(15) NOT NULL,
+	fecha varchar(20) NOT NULL,
 	id_medico varchar(30) NOT NULL,
 	id_paciente varchar(30) NOT NULL,
 	CONSTRAINT citas_PK PRIMARY KEY (id),
