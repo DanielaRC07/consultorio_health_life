@@ -4,6 +4,12 @@ a{
 #contenedor-inicial{
     background-color: #0D3878;
 }
+
+#contenedor-formulario{
+    display: flex;
+    align-items: center;
+  }
+
 .logo{
     height: 150px;
 }
