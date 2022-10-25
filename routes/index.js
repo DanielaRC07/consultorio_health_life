@@ -128,7 +128,7 @@ router.post('/session', urlcodeParser, (req, res, next) => {
     const identificacion = req.body.password;
     //predifinido
 
-    connection.query("INSERT INTO citas SET ?", { numero_identificacion: identificacion, hora: hora, fecha: fecha, id_medico: idmedico, id_paciente: "456123" }, async (error, result) => {
+    connection.query('SELECT * FROM medicos LIMIT 1', async (error, result) => {
         if (error) {
             console.log(error);
         } else {
