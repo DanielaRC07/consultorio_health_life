@@ -41,7 +41,7 @@
                         <a class="nav-link " href="/registro">Agendar Cita</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="#contenedor-formulario">Contacto</a>
+                        <a class="nav-link " href="#seccion-final">Contacto</a>
                     </li>
                 </ul>
             </div>
@@ -120,6 +120,40 @@
 
         </div>
     </div>
+
+    <section id="seccion-final" class="border-bottom border-secondary border-2">
+        <!--Formulario-->
+        <div class="container" id="contenedor-formulario">
+            <div class="text-center mb-4" id="titulo-formulario">
+                <div><img class="img-fluid w-25" src="/resources/css/img/user.png" alt="contacto" id="img-form"></div>
+                <h2>Contacto</h2>
+                <p class="fs-5">Mas Informacion</p>
+            </div>
+            <form action="" class="w-50">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" required>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" placeholder="Escriba su Nombre" required>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Telefono</label>
+                    <input type="tel" class="form-control" id="tel" placeholder="300-000-00-00" required>
+                </div>
+                <div class="mb-3">
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                        placeholder="Escriba su Mensaje"></textarea>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-primary w-100 fs-5" type="button">Enviar</button>
+                </div>
+            </form>
+
+        </div>
+    </section>
+
     <footer class="w-100 d-flex align-items justify-content-center flex-wrap">
         <div id="iconos">
             <p class="fs-5 px-3 pt-3">Hecho por:</p>
