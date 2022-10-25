@@ -4,15 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=}, initial-scale=1.0">
+<<<<<<< HEAD
+=======
+    <script src="https://kit.fontawesome.com/91062a2dc2.js" crossorigin="anonymous"></script>
+>>>>>>> 00ecccb1f38310fc5a6710e0c4ceaad51ed0d58d
     <link rel="stylesheet" href="resources/css/cita.css">
     <title>Cita Agendada</title>
 </head>
 <body>
-    <h1>Su cita a registrado exitosamente!</h1>
-    <p><%= idcita %></p>
-    <p><%= numIden %></p>
-    <p><%= hora %></p>
-    <p><%= fecha %></p>
-    <a href="logout" class="a-logout">Logout</a>
+<form id="form">
+    <div id="contenedor">
+        <div class="principal">
+        <i class="fa-regular fa-clipboard-list-check  icon"></i>
+        <h1>¡Su cita a sido agendada exitosamente!</h1>
+        </div>
+        <div class="chitito">
+        <p>Numero de Cita: <br>
+            <%= idcita %></p>
+        <p>Identificacion del Paciente: <br>
+            <%= numIden %></p>
+        <p>Hora: <br>
+            <%= hora %></p>
+        <p>Fecha: <br>
+            <%= fecha %></p>
+        <a href="logout" class="a-logout">Logout</a>
+        </div>
+    </div>
+</form>
 </body>
 </html>
