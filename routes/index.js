@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
 router.get('/login', (req, res) => {
     res.render('login');
 });
-router.get('/cita',(req,res)=>{
+router.get('/cita', (req, res) => {
     res.render('cita')
 })
 router.get('/registro', (req, res) => {
@@ -124,33 +124,41 @@ router.get('/logout', function (req, res) {
 router.post('/session', urlcodeParser, (req, res, next) => {
     const fecha = req.body.fecha;
     const hora = req.body.hora;
+    //Numero de id de paciente
     const identificacion = req.body.password;
     //predifinido
-    const idmedico = 11111111;
 
-    connection.query("INSERT INTO citas SET ?", { numero_identificacion: identificacion, hora: hora, fecha: fecha, id_medico: idmedico, id_paciente: "111" }, async (error, results) => {
-        if (error) {
-            console.log(error);
+    connection.query('SELECT * FROM medicos LIMIT 1', [req.body], (err, result, rows) => {
+        if (err) {
+            console.log(err);
         } else {
-            console.log("Ser registro Correctamente")
-            const x = ""
-            // SELECT * FROM citas WHERE numero_identificacion = ${identificacion}`
-            const consulta = `SELECT * FROM citas ORDER BY id DESC LIMIT 1 `
-            connection.query(consulta, [req.body], (err, result, rows) => {
-                if (err) {
-                    { res.send(err) }
+            //obtenos la id del medico predeterminado para guarar en una variable
+            const idMedico = result[0].id;
+            //Conexion para agendamiento
+            connection.query("INSERT INTO citas SET ?", { numero_identificacion: identificacion, hora: hora, fecha: fecha, id_medico: idMedico, id_paciente: identificacion }, async (error, results) => {
+                if (error) {
+                    console.log(error);
                 } else {
-                    //res.status(200).send({ result })
-                    console.log(result)
-                    res.render('cita',{
-                        idcita : result[0].id,
-                        numIden : result[0].numero_identificacion,
-                        hora : result[0].hora,
-                        fecha : result[0].fecha,
+                    console.log("Ser registro Correctamente")
+                    const x = ""
+                    // SELECT * FROM citas WHERE numero_identificacion = ${identificacion}`
+                    const consulta = `SELECT * FROM citas ORDER BY id DESC LIMIT 1 `
+                    connection.query(consulta, [req.body], (err, result, rows) => {
+                        if (err) {
+                            { res.send(err) }
+                        } else {
+                            //res.status(200).send({ result })
+                            console.log(result)
+                            res.render('cita', {
+                                idcita: result[0].id,
+                                numIden: result[0].numero_identificacion,
+                                hora: result[0].hora,
+                                fecha: result[0].fecha,
+                            })
+                        }
                     })
                 }
-            })
-
+            });
         }
     });
 });
@@ -159,13 +167,14 @@ router.post('/mostrar', urlcodeParser, function (req, res) {
     req.getConnection((err, conn) => {
         if (err) return res.send(err)
         const x = ""
-        const consulta = `SELECT * FROM pacientes WHERE id = ${identificacion}`
+        const consulta = `SELECT * FROM medicos LIMIT 1`
         conn.query(consulta, [req.body], (err, result, rows) => {
             if (err) {
                 { res.send(err) }
             } else {
                 res.status(200).send({ result })
-                console.log(result)
+                idMedico = result[0].id;
+                console.log(idMedico)
             }
         })
     })
